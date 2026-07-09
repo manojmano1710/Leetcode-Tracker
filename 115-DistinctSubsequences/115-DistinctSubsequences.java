@@ -1,0 +1,19 @@
+// Last updated: 09/07/2026, 15:08:22
+class Solution {
+    public int numDistinct(String s, String t) {
+        int n = s.length(), m = t.length();
+
+        long[] dp = new long[m + 1];
+        dp[0] = 1; // empty t
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = m; j >= 1; j--) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    dp[j] += dp[j - 1];
+                }
+            }
+        }
+
+        return (int) dp[m];
+    }
+}
